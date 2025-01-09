@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 export default {
   darkMode: ["class"],
@@ -50,6 +50,25 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        c: {
+          rosewater: "hsl(var(--c-rosewater))",
+          flamingo: "hsl(var(--c-flamingo))",
+          pink: "hsl(var(--c-pink))",
+          mauve: "hsl(var(--c-mauve))",
+          red: "hsl(var(--c-red))",
+          maroon: "hsl(var(--c-marron))",
+          peach: "hsl(var(--c-peach))",
+          yellow: "hsl(var(--c-yellow))",
+          green: "hsl(var(--c-green))",
+          teal: "hsl(var(--c-teal))",
+          sky: "hsl(var(--c-sky))",
+          sapphire: "hsl(var(--c-sapphire))",
+          blue: "hsl(var(--c-blue))",
+          lavender: "hsl(var(--c-lavender))",
+          base: "hsl(var(--c-base))",
+          mantle: "hsl(var(--c-mantle))",
+          crust: "hsl(var(--c-crust))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -68,4 +87,4 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+} satisfies Config

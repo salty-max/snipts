@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { LogOutIcon } from "lucide-react"
 import { ConvexClientProvider } from "@/components/providers/convex-client-provider"
+import { Footer } from "@/components/footer"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,23 +38,10 @@ const RootLayout = ({
     <ConvexClientProvider>
       <html lang="en">
         <body
-          className={`dark ${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`dark ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         >
-          <SignedOut>
-            <SignUpButton>
-              <Button>Sign up</Button>
-            </SignUpButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-            <SignOutButton>
-              <Button variant="destructive">
-                <LogOutIcon className="size-4" />
-                Sign out
-              </Button>
-            </SignOutButton>
-          </SignedIn>
           {children}
+          <Footer />
         </body>
       </html>
     </ConvexClientProvider>

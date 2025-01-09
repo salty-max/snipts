@@ -1,5 +1,17 @@
 import { v } from "convex/values"
-import { mutation, QueryCtx } from "./_generated/server"
+import { mutation, query, QueryCtx } from "./_generated/server"
+
+export const getUser = query({
+  args: { userId: v.string() },
+  handler: async (ctx, args) => {
+    if (!args.userId) return null
+
+    const user = await userById(ctx, args.userId)
+    if (!user) return null
+
+    return user
+  },
+})
 
 export const syncUser = mutation({
   args: {
