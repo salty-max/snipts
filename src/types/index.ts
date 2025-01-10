@@ -11,6 +11,13 @@ export interface Theme {
   logoPath: string
 }
 
+export interface ThemeDefinition {
+  base: editor.BuiltinTheme
+  inherit: boolean
+  rules: { token: string; foreground: string }[]
+  colors: Record<string, string>
+}
+
 export interface Language {
   id: string
   label: string

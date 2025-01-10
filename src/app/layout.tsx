@@ -1,16 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignOutButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs"
-import { Button } from "@/components/ui/button"
-import { LogOutIcon } from "lucide-react"
 import { ConvexClientProvider } from "@/components/providers/convex-client-provider"
 import { Footer } from "@/components/footer"
 
