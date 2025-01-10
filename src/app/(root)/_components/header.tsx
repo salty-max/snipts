@@ -2,7 +2,7 @@ import { currentUser } from "@clerk/nextjs/server"
 import { ConvexHttpClient } from "convex/browser"
 import { api } from "../../../../convex/_generated/api"
 import Link, { LinkProps } from "next/link"
-import { BlocksIcon, Code2Icon, LucideIcon, SparkleIcon } from "lucide-react"
+import { BlocksIcon, Code2Icon, LucideIcon, SparklesIcon } from "lucide-react"
 import { SignedIn } from "@clerk/nextjs"
 import { ThemeSelector } from "./theme-selector"
 import { LanguageSelector } from "./language-selector"
@@ -53,10 +53,10 @@ export const Header = async () => {
           {!convexUser?.isPro && (
             <Link
               href="/pricing"
-              className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-c-peach/20 hover:border-c-peach/40 bg-gradient-to-r from-c-yellow/10 to-c-peach/10 hover:from-c-yellow/20 hover:to-c-peach/20 transition-all duration-300"
+              className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg border border-c-peach/20 hover:border-c-peach/40 bg-gradient-to-r from-c-yellow/20 to-c-peach/20 hover:from-c-yellow/20 hover:to-c-peach/20 transition-all duration-300"
             >
-              <SparkleIcon className="size-4 text-c-peach hover:text-c-peach/70 animate-pulse" />
-              <span className="text-sm font-medium text-c-peach/90 hover:text-c-peach/70">
+              <SparklesIcon className="size-4 text-c-peach group-hover:text-c-peach/70 rotate-0 group-hover:rotate-3" />
+              <span className="text-sm font-medium text-c-peach/90 group-hover:text-c-peach/70">
                 Pro
               </span>
             </Link>
@@ -64,7 +64,7 @@ export const Header = async () => {
           <SignedIn>
             <RunButton />
           </SignedIn>
-          <div className="pl-3 border-l border-border">
+          <div className="pl-4 border-l border-border flex items-center">
             <ProfileButton />
           </div>
         </div>
