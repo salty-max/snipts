@@ -96,6 +96,7 @@ export const EditorPanel = () => {
             </div>
             <Button
               variant="outline"
+              className="bg-c-crust hover:bg-background"
               size="icon"
               aria-label="Reset to default code"
               onClick={handleRefresh}

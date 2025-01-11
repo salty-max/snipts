@@ -48,7 +48,7 @@ export const ThemeSelector = () => {
               />
             </div>
 
-            <span className="w-24 truncate text-left">
+            <span className="w-24 truncate text-left text-sm font-medium">
               {currentTheme?.label}
             </span>
           </div>

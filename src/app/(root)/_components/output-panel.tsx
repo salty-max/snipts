@@ -5,27 +5,34 @@ import { useMounted } from "@/hooks/use-mounted"
 import { useCodeEditorStore } from "@/store/use-code-editor-store"
 import {
   AlertTriangleIcon,
-  CheckCheckIcon,
+  CircleCheckIcon,
   ClockIcon,
   CopyCheckIcon,
   CopyIcon,
   TerminalIcon,
 } from "lucide-react"
+import { JetBrains_Mono } from "next/font/google"
 import { useState } from "react"
+
+const jetBrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+})
 
 export const OutputPanel = () => {
   const [isCopied, setIsCopied] = useState(false)
   const { output, error, isRunning } = useCodeEditorStore()
   const mounted = useMounted()
 
-  const hasContent = !!output || !!error
+  const hasContent = output || error
 
   const handleCopy = async () => {
-    if (!output || !error) return
+    if (!hasContent) return
 
-    await navigator.clipboard.writeText(output || error)
+    if (output) await navigator.clipboard.writeText(output)
+    if (error) await navigator.clipboard.writeText(error)
+
     setIsCopied(true)
-
     setTimeout(() => setIsCopied(false), 2000)
   }
 
@@ -43,10 +50,11 @@ export const OutputPanel = () => {
         </div>
         <Button
           variant="outline"
+          className="bg-c-mantle hover:bg-background"
           size="icon"
           aria-label="Copy output"
           onClick={handleCopy}
-          disabled={!hasContent}
+          disabled={!hasContent || isCopied}
         >
           {isCopied ? (
             <CopyCheckIcon className="size-4" />
@@ -57,26 +65,37 @@ export const OutputPanel = () => {
       </div>
       {/* Output */}
       <div className="relative">
-        <div className="relative bg-c-mantle/50 backdrop-blur-sm rounded-xl p-4 h-[600px] overflow-auto font-mono text-sm">
+        <div
+          style={{ fontFamily: jetBrains.style.fontFamily }}
+          className={`relative bg-c-mantle/50 backdrop-blur-sm rounded-xl p-4 h-[600px] overflow-auto text-sm`}
+        >
           {isRunning ? (
             <RunningCodeSkeleton />
           ) : error ? (
             <div className="flex items-start gap-3 text-destructive">
-              <AlertTriangleIcon className="size-5 flex-shrink-0 mt-1" />
+              <AlertTriangleIcon className="size-5 flex-shrink-0" />
               <div className="space-y-1">
-                <div className="font-medium">Execution Error</div>
-                <div className="whitespace-pre-wrap text-destructive/80">
+                <div className="font-semibold">Execution Error</div>
+                <pre
+                  style={{ fontFamily: jetBrains.style.fontFamily }}
+                  className="whitespace-pre-wrap text-destructive/80"
+                >
                   {error}
-                </div>
+                </pre>
               </div>
             </div>
           ) : output ? (
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-c-sky mb-3">
-                <CheckCheckIcon className="size-5" />
-                <span className="font-medium">Execution Successfull</span>
+              <div className="flex items-center gap-2 text-c-green mb-3">
+                <CircleCheckIcon className="size-5" />
+                <span className="font-semibold">Execution Successfull</span>
               </div>
-              <pre className="whitespace-pre-wrap">{output}</pre>
+              <pre
+                style={{ fontFamily: jetBrains.style.fontFamily }}
+                className="whitespace-pre-wrap"
+              >
+                {output}
+              </pre>
             </div>
           ) : (
             <div className="h-full flex flex-col items-center justify-center">

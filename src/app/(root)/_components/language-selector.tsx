@@ -52,8 +52,8 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
                 height={20}
               />
             </div>
-            {currentLanguage.label}
-          </div>{" "}
+            <span className="text-sm font-medium">{currentLanguage.label}</span>
+          </div>
           <ChevronDownIcon
             className={cn(
               "size-4 transform rotate-0 transition-transform",
@@ -100,4 +100,7 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
 }
 
 const isLanguageLocked = (hasAccess: boolean, language: string) =>
-  !hasAccess && language !== "javascript" && language !== "typescript"
+  !hasAccess &&
+  language !== "javascript" &&
+  language !== "typescript" &&
+  language !== "rust"

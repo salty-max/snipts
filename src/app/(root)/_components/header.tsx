@@ -19,7 +19,7 @@ export const Header = async () => {
 
   return (
     <header className="relative z-10">
-      <div className="flex items-center lg:justify-between justify-center bg-c-crust backdrop-blur-xl p-6 mb-4 rounded-lg">
+      <div className="flex items-center lg:justify-between justify-center bg-c-crust backdrop-blur-xl p-6 mb-4 rounded-xl">
         <div className="hidden lg:flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3 group relative">
             {/* Logo Hover Effect */}
@@ -50,6 +50,9 @@ export const Header = async () => {
             <ThemeSelector />
             <LanguageSelector hasAccess={Boolean(convexUser?.isPro)} />
           </div>
+          <SignedIn>
+            <RunButton />
+          </SignedIn>
           {!convexUser?.isPro && (
             <Link
               href="/pricing"
@@ -61,9 +64,6 @@ export const Header = async () => {
               </span>
             </Link>
           )}
-          <SignedIn>
-            <RunButton />
-          </SignedIn>
           <div className="pl-4 border-l border-border flex items-center">
             <ProfileButton />
           </div>

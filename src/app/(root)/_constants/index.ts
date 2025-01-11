@@ -31,7 +31,7 @@ console.log('Sum of numbers:', sum)
     id: "typescript",
     label: "Typescript",
     logoPath: "/typescript.svg",
-    pistonRuntime: { language: "typescript", version: "18.15.0" },
+    pistonRuntime: { language: "typescript", version: "5.0.3" },
     monacoLanguage: "typescript",
     defaultCode: `// Typescript Playground
 const numbers: number[] = [1,2,3,4,5]
@@ -54,7 +54,7 @@ console.log('Sum of numbers:', sum)
     id: "csharp",
     label: "C#",
     logoPath: "/csharp.svg",
-    pistonRuntime: { language: "csharp", version: "10.0.0" },
+    pistonRuntime: { language: "csharp", version: "6.12.0" },
     monacoLanguage: "csharp",
     defaultCode: `// C# Playground
 using System;
@@ -84,7 +84,7 @@ class Program {
     id: "cpp",
     label: "C++",
     logoPath: "/cpp.svg",
-    pistonRuntime: { language: "cpp", version: "17.0.0" },
+    pistonRuntime: { language: "cpp", version: "10.2.0" },
     monacoLanguage: "cpp",
     defaultCode: `// C++ Playground
 #include <iostream>
@@ -116,7 +116,7 @@ int main() {
     id: "rust",
     label: "Rust",
     logoPath: "/rust.svg",
-    pistonRuntime: { language: "rust", version: "1.65.0" },
+    pistonRuntime: { language: "rust", version: "1.68.2" },
     monacoLanguage: "rust",
     defaultCode: `// Rust Playground
 fn main() {
@@ -141,7 +141,7 @@ fn main() {
     id: "go",
     label: "Go",
     logoPath: "/go.svg",
-    pistonRuntime: { language: "go", version: "1.19.0" },
+    pistonRuntime: { language: "go", version: "1.16.2" },
     monacoLanguage: "go",
     defaultCode: `// Go Playground
 package main
@@ -206,7 +206,7 @@ print("Sum of numbers:", sum_numbers)
     id: "lua",
     label: "Lua",
     logoPath: "/lua.svg",
-    pistonRuntime: { language: "lua", version: "5.4.0" },
+    pistonRuntime: { language: "lua", version: "5.4.4" },
     monacoLanguage: "lua",
     defaultCode: `-- Lua Playground
 local numbers = {1, 2, 3, 4, 5}
