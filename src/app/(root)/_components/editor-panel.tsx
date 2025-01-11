@@ -11,6 +11,7 @@ import { useClerk } from "@clerk/nextjs"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useMounted } from "@/hooks/use-mounted"
 import { JetBrains_Mono } from "next/font/google"
+import { Button } from "@/components/ui/button"
 
 const jetBrains = JetBrains_Mono({
   subsets: ["latin"],
@@ -58,7 +59,7 @@ export const EditorPanel = () => {
 
   return (
     <div className="relative">
-      <div className="relative bg-c-crust backdrop-blur rounded-xl border border-border p-6">
+      <div className="relative bg-c-crust backdrop-blur rounded-xl ring-1 ring-white/[0.05] p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
@@ -93,17 +94,18 @@ export const EditorPanel = () => {
                 </span>
               </div>
             </div>
-            <button
-              className="p-2 bg-c-crust hover:bg-c-mantle rounded-lg duration-200 ring-1 ring-white/5 transition-all hover:scale-110"
+            <Button
+              variant="outline"
+              size="icon"
               aria-label="Reset to default code"
               onClick={handleRefresh}
             >
               <RefreshCcwIcon className="size-4" />
-            </button>
-            <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r from-c-blue to-c-blue/80 opacity-90 hover:opacity-100 transition-all hover:scale-105">
+            </Button>
+            <Button>
               <ShareIcon className="size-4" />
               <span className="text-sm font-medium">Share</span>
-            </button>
+            </Button>
           </div>
         </div>
         {/* Editor */}
