@@ -39,18 +39,22 @@ export const OutputPanel = () => {
   if (!mounted) return null
 
   return (
-    <div className="relative bg-c-mantle rounded-xl p-4 ring-1 ring-white/[0.05]">
+    <div className="relative bg-c-mantle rounded-xl p-6 ring-1 ring-white/[0.05]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center size-6 rounded-lg bg-c-mantle ring-1 ring-white/[0.05]">
-            <TerminalIcon className="size-4 text-c-blue" />
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center size-10 rounded-lg bg-c-mantle ring-1 ring-white/[0.05]">
+            <TerminalIcon className="size-5 text-c-blue" />
           </div>
-          <span className="text-sm font-medium">Output</span>
+          <div>
+            <h2 className="text-sm font-medium">Output</h2>
+            <p className="text-xs text-gray-500">
+              What could possibly go wrong?
+            </p>
+          </div>
         </div>
         <Button
           variant="outline"
-          className="bg-c-mantle hover:bg-background"
           size="icon"
           aria-label="Copy output"
           onClick={handleCopy}
@@ -67,7 +71,7 @@ export const OutputPanel = () => {
       <div className="relative">
         <div
           style={{ fontFamily: jetBrains.style.fontFamily }}
-          className={`relative bg-c-mantle/50 backdrop-blur-sm rounded-xl p-4 h-[600px] overflow-auto text-sm`}
+          className={`relative bg-c-mantle/50 backdrop-blur-sm rounded-xl p-4 h-[600px] overflow-auto text-sm ring-1 ring-white/[0.05]`}
         >
           {isRunning ? (
             <RunningCodeSkeleton />

@@ -79,7 +79,7 @@ export const EditorPanel = () => {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 px-3 py-2 bg-c-crust rounded-lg ring-1 ring-white/5">
+            <div className="flex items-center gap-3 px-3 py-2 rounded-lg ring-1 ring-white/5">
               <TypeIcon className="size-4 text-gray-500" />
               <div className="flex items-center gap-3">
                 <Slider
@@ -96,7 +96,6 @@ export const EditorPanel = () => {
             </div>
             <Button
               variant="outline"
-              className="bg-c-crust hover:bg-background"
               size="icon"
               aria-label="Reset to default code"
               onClick={handleRefresh}
@@ -105,7 +104,7 @@ export const EditorPanel = () => {
             </Button>
             <Button>
               <ShareIcon className="size-4" />
-              <span className="text-sm font-medium">Share</span>
+              Share
             </Button>
           </div>
         </div>

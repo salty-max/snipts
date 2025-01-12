@@ -41,7 +41,7 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
   return (
     <DropdownMenu onOpenChange={() => setOpen(!open)}>
       <DropdownMenuTrigger asChild>
-        <button className="w-48 group relative flex items-center justify-between gap-3 px-4 py-2.5 bg-c-mantle rounded-lg transition-colors duration-200 border border-c-mantle/50 hover:border-c-base focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+        <button className="w-48 group relative flex items-center justify-between gap-3 px-4 py-2 bg-c-mantle rounded-lg transition-colors duration-200 border border-c-mantle/50 hover:border-c-base focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
           {/* Decoration */}
           <div
             className="absolute inset-0 bg-gradient-to-r from-c-blue/20 to-c-mauve/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
