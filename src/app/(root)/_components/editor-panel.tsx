@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useMounted } from "@/hooks/use-mounted"
 import { JetBrains_Mono } from "next/font/google"
 import { Button } from "@/components/ui/button"
+import { ShareDialog } from "./share-dialog"
 
 const jetBrains = JetBrains_Mono({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const jetBrains = JetBrains_Mono({
 })
 
 export const EditorPanel = () => {
-  const [shareDialogOpen, setShareDialogOpen] = useState(false)
+  const [isShareDialogOpen, setIsShareDialogOpen] = useState(false)
   const { language, theme, fontSize, setFontSize, editor, setEditor } =
     useCodeEditorStore()
   const clerk = useClerk()
@@ -102,10 +103,7 @@ export const EditorPanel = () => {
             >
               <RefreshCcwIcon className="size-4" />
             </Button>
-            <Button>
-              <ShareIcon className="size-4" />
-              Share
-            </Button>
+            <ShareDialog />
           </div>
         </div>
         {/* Editor */}

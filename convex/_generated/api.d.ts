@@ -16,6 +16,7 @@ import type {
 import type * as http from "../http.js";
 import type * as users from "../users.js";
 import type * as codeExecutions from "../codeExecutions.js";
+import type * as snippets from "../snippets.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -29,6 +30,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   users: typeof users;
   codeExecutions: typeof codeExecutions;
+  snippets: typeof snippets;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
