@@ -3,6 +3,8 @@ import { ThemeDefinition, type Language, type Theme } from "../../../types"
 
 type LanguageConfig = Record<string, Language>
 
+export const FREE_LANGUAGES = ["javascript"]
+
 export const LANGUAGE_CONFIG: LanguageConfig = {
   javascript: {
     id: "javascript",

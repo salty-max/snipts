@@ -15,6 +15,7 @@ import { ChevronDownIcon, LockIcon, SparklesIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu"
 import { useMounted } from "@/hooks/use-mounted"
+import { isProLanguage } from "../_utils"
 
 interface LanguageSelectorProps {
   hasAccess: boolean
@@ -27,8 +28,11 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
 
   const currentLanguage = LANGUAGE_CONFIG[language]
 
+  const checkLockedLanguage = (language: string) =>
+    !hasAccess && isProLanguage(language)
+
   const handleLanguageSelect = (language: string) => {
-    if (isLanguageLocked(hasAccess, language)) return
+    if (checkLockedLanguage(language)) return
     setLanguage(language)
   }
 
@@ -74,7 +78,7 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
               "relative group flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg cursor-pointer duration-200",
               language === l.id && "bg-c-blue/10 text-c-blue",
             )}
-            disabled={isLanguageLocked(hasAccess, l.id)}
+            disabled={checkLockedLanguage(l.id)}
             onClick={() => handleLanguageSelect(l.id)}
           >
             <div className="absolute inset-0 rounded-md bg-gradient-to-r from-c-blue/20 to-c-mauve/20 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -87,7 +91,7 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
               </div>
               {l.label}
             </div>
-            {isLanguageLocked(hasAccess, l.id) ? (
+            {checkLockedLanguage(l.id) ? (
               <LockIcon className="size-4" />
             ) : (
               <SparklesIcon className="size-4" />
@@ -98,9 +102,3 @@ export const LanguageSelector = ({ hasAccess }: LanguageSelectorProps) => {
     </DropdownMenu>
   )
 }
-
-const isLanguageLocked = (hasAccess: boolean, language: string) =>
-  !hasAccess &&
-  language !== "javascript" &&
-  language !== "typescript" &&
-  language !== "rust"

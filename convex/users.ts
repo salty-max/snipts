@@ -52,7 +52,7 @@ export const deleteUser = mutation({
   },
 })
 
-const userById = async (ctx: QueryCtx, userId: string) =>
+export const userById = async (ctx: QueryCtx, userId: string) =>
   await ctx.db
     .query("users")
     .withIndex("by_user_id", (q) => q.eq("userId", userId))
