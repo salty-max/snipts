@@ -7,7 +7,7 @@ import { SignedIn } from "@clerk/nextjs"
 import { ThemeSelector } from "./theme-selector"
 import { LanguageSelector } from "./language-selector"
 import { RunButton } from "./run-button"
-import { ProfileButton } from "./profile-button"
+import { ProfileButton } from "@/components/profile-button"
 
 export const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
@@ -49,22 +49,22 @@ export const Header = async () => {
           <div className="flex items-center gap-3">
             <ThemeSelector />
             <LanguageSelector hasAccess={Boolean(convexUser?.isPro)} />
+            <SignedIn>
+              <RunButton />
+            </SignedIn>
           </div>
-          <SignedIn>
-            <RunButton />
-          </SignedIn>
-          {!convexUser?.isPro && (
-            <Link
-              href="/pricing"
-              className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg border border-c-peach/20 hover:border-c-peach/40 bg-gradient-to-r from-c-yellow/20 to-c-peach/20 hover:from-c-yellow/20 hover:to-c-peach/20 transition-all duration-300"
-            >
-              <SparklesIcon className="size-4 text-c-peach group-hover:text-c-peach/70 rotate-0 group-hover:rotate-3" />
-              <span className="text-sm font-medium text-c-peach/90 group-hover:text-c-peach/70">
-                Pro
-              </span>
-            </Link>
-          )}
-          <div className="pl-4 border-l border-border flex items-center">
+          <div className="pl-4 border-l border-border flex items-center gap-3">
+            {!convexUser?.isPro && (
+              <Link
+                href="/pricing"
+                className="relative group flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-c-yellow/40 to-c-maroon/40 hover:from-c-yellow/30 hover:to-c-maroon/30 transition-all duration-300"
+              >
+                <SparklesIcon className="size-4 text-c-peach group-hover:text-c-peach/70 rotate-0 group-hover:rotate-3" />
+                <span className="text-sm font-medium text-c-peach/90 group-hover:text-c-peach/70">
+                  Pro
+                </span>
+              </Link>
+            )}
             <ProfileButton />
           </div>
         </div>
@@ -81,7 +81,7 @@ interface NavLinkProps extends LinkProps {
 const NavLink = ({ href, icon: Icon, children }: NavLinkProps) => (
   <Link
     href={href}
-    className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg bg-c-mantle hover:bg-primary/10 border border-c-mantle hover:border-primary/10 transition-all duration-300 shadow-lg overflow-hidden"
+    className="relative group flex items-center gap-2 px-4 py-2 rounded-lg bg-c-mantle hover:bg-primary/10 0 transition-all duration-300 shadow-lg overflow-hidden"
   >
     <div className="absolute inset-0 bg-gradient-to-r from-c-blue/20 to-c-mauve/20 opacity-0 group-hover:opacity-100 transition-opacity" />
     {Icon && (

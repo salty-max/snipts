@@ -56,7 +56,7 @@ export default {
           pink: "hsl(var(--c-pink))",
           mauve: "hsl(var(--c-mauve))",
           red: "hsl(var(--c-red))",
-          maroon: "hsl(var(--c-marron))",
+          maroon: "hsl(var(--c-maroon))",
           peach: "hsl(var(--c-peach))",
           yellow: "hsl(var(--c-yellow))",
           green: "hsl(var(--c-green))",

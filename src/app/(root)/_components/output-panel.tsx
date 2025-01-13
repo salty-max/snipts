@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { useMounted } from "@/hooks/use-mounted"
 import { useCodeEditorStore } from "@/store/use-code-editor-store"
 import {
@@ -39,9 +40,9 @@ export const OutputPanel = () => {
   if (!mounted) return null
 
   return (
-    <div className="relative bg-c-mantle rounded-xl p-6 ring-1 ring-white/[0.05]">
+    <Card className="bg-c-mantle border-0">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center size-10 rounded-lg bg-c-mantle ring-1 ring-white/[0.05]">
             <TerminalIcon className="size-5 text-c-blue" />
@@ -66,12 +67,12 @@ export const OutputPanel = () => {
             <CopyIcon className="size-4" />
           )}
         </Button>
-      </div>
+      </CardHeader>
       {/* Output */}
-      <div className="relative">
+      <CardContent>
         <div
           style={{ fontFamily: jetBrains.style.fontFamily }}
-          className={`relative bg-c-mantle/50 backdrop-blur-sm rounded-xl p-4 h-[600px] overflow-auto text-sm ring-1 ring-white/[0.05]`}
+          className={`relative bg-c-crust rounded-xl p-4 h-[600px] overflow-auto text-sm`}
         >
           {isRunning ? (
             <RunningCodeSkeleton />
@@ -112,8 +113,8 @@ export const OutputPanel = () => {
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
 
