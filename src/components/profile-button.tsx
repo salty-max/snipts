@@ -1,25 +1,49 @@
 "use client"
 
-import { SignedOut, SignInButton } from "@clerk/clerk-react"
-import { UserButton } from "@clerk/nextjs"
-import { UserIcon } from "lucide-react"
+import { useSession, signIn, signOut } from "next-auth/react"
+import { Button } from "./ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu"
+import { LogInIcon, LogOutIcon, User2Icon, UserIcon } from "lucide-react"
+import Link from "next/link"
 
-export const ProfileButton = () => {
+const ProfileButton = () => {
+  const { data: session } = useSession()
+
+  if (session) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button size="icon" className="rounded-full">
+            <User2Icon className="size-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>
+            <UserIcon className="size-4" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => signOut()}>
+            <LogOutIcon className="size-4" />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  }
+
   return (
-    <>
-      <UserButton>
-        <UserButton.MenuItems>
-          <UserButton.Link
-            label="Profile"
-            labelIcon={<UserIcon className="size-4" />}
-            href="/profile"
-          />
-        </UserButton.MenuItems>
-      </UserButton>
-
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-    </>
+    <Link href="/auth/sign-in">
+      <Button>
+        <LogInIcon className="size-4" />
+        Sign in
+      </Button>
+    </Link>
   )
 }
+
+export default ProfileButton
