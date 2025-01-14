@@ -1,13 +1,15 @@
 import { currentUser } from "@clerk/nextjs/server"
 import { ConvexHttpClient } from "convex/browser"
 import { api } from "../../../../convex/_generated/api"
-import Link, { LinkProps } from "next/link"
-import { BlocksIcon, Code2Icon, LucideIcon, SparklesIcon } from "lucide-react"
+import Link from "next/link"
+import { BlocksIcon, Code2Icon } from "lucide-react"
 import { SignedIn } from "@clerk/nextjs"
 import { ThemeSelector } from "./theme-selector"
 import { LanguageSelector } from "./language-selector"
 import { RunButton } from "./run-button"
 import { ProfileButton } from "@/components/profile-button"
+import { NavLink } from "@/components/nav-link"
+import { ProLink } from "@/components/pro-link"
 
 export const Header = async () => {
   const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
@@ -34,15 +36,15 @@ export const Header = async () => {
               <span className="block text-lg font-semibold bg-gradient-to-r from-c-blue to-c-mauve text-transparent bg-clip-text">
                 Snipts
               </span>
-              <span className="block text-xs text-c-blue/60 font-medium">
-                Interactive Snippets Editor
+              <span className="block text-sm text-c-blue/60 font-medium">
+                Interactive Code Editor
               </span>
             </div>
           </Link>
           <nav className="flex items-center space-x-1">
             <NavLink href="/snippets" icon={Code2Icon}>
               Snippets
-            </NavLink>{" "}
+            </NavLink>
           </nav>
         </div>
         <div className="flex items-center gap-4">
@@ -54,17 +56,7 @@ export const Header = async () => {
             </SignedIn>
           </div>
           <div className="pl-4 border-l border-border flex items-center gap-3">
-            {!convexUser?.isPro && (
-              <Link
-                href="/pricing"
-                className="relative group flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-c-yellow/40 to-c-maroon/40 hover:from-c-yellow/30 hover:to-c-maroon/30 transition-all duration-300"
-              >
-                <SparklesIcon className="size-4 text-c-peach group-hover:text-c-peach/70 rotate-0 group-hover:rotate-3" />
-                <span className="text-sm font-medium text-c-peach/90 group-hover:text-c-peach/70">
-                  Pro
-                </span>
-              </Link>
-            )}
+            {!convexUser?.isPro && <ProLink />}
             <ProfileButton />
           </div>
         </div>
@@ -72,23 +64,3 @@ export const Header = async () => {
     </header>
   )
 }
-
-interface NavLinkProps extends LinkProps {
-  icon?: LucideIcon
-  children: React.ReactNode
-}
-
-const NavLink = ({ href, icon: Icon, children }: NavLinkProps) => (
-  <Link
-    href={href}
-    className="relative group flex items-center gap-2 px-4 py-2 rounded-lg bg-c-mantle hover:bg-primary/10 0 transition-all duration-300 shadow-lg overflow-hidden"
-  >
-    <div className="absolute inset-0 bg-gradient-to-r from-c-blue/20 to-c-mauve/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-    {Icon && (
-      <Icon className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
-    )}
-    <span className="text-sm font-medium relative z-10 transition-colors">
-      {children}
-    </span>
-  </Link>
-)
