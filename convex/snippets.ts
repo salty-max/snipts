@@ -68,3 +68,37 @@ export const createSnippet = mutation({
     return snippetId
   },
 })
+
+export const starSnippet = mutation({
+  args: {
+    snippetId: v.id("snippets"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (!identity) throw new ConvexError("Not authenticated")
+
+    const user = await userById(ctx, identity.subject)
+    if (!user) {
+      throw new ConvexError("User not found")
+    }
+
+    const existing = await ctx.db
+      .query("stars")
+      .withIndex("by_user_id_and_snippet_id")
+      .filter(
+        (q) =>
+          q.eq(q.field("userId"), identity.subject) &&
+          q.eq(q.field("snippetId"), args.snippetId),
+      )
+      .unique()
+
+    if (existing) {
+      await ctx.db.delete(existing._id)
+    } else {
+      await ctx.db.insert("stars", {
+        userId: user._id,
+        snippetId: args.snippetId,
+      })
+    }
+  },
+})
